@@ -13,11 +13,16 @@ export default function QueryProcessor(query: string): string {
   if (q.includes("name")) {
     return "Rohan";
   }
+if (q.includes("what is your andrew id")) {
+  return "KhanAcademy";
+}
+if (q.includes("andrew id")) {
+  return "KhanAcademy";
+}
+if (q.includes("andrewid")) {
+  return "KhanAcademy";
+}
 
-  if (/\b(andrew\s*id|andrewid)\b/i.test(query)) {
-    const id = process.env.NEXT_PUBLIC_ANDREW_ID || "andrewid";
-    return id;
-  }
 
   return "";
 }
