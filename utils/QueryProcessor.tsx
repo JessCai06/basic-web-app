@@ -13,9 +13,6 @@ export default function QueryProcessor(query: string): string {
   if (q.includes("name")) {
     return "jess06";
   }
-  if (q.includes("what is your andrew id")) {
-    return "jess06";
-  }
   if (q.includes("plus")) {
     // Find two numbers around the word 'plus'. The prompt guarantees two-digit numbers.
     // We'll extract all numbers from the query and if there are at least two, add the first two.
@@ -33,9 +30,16 @@ export default function QueryProcessor(query: string): string {
     return "";
   }
 
-  // Andrew ID should be configurable via environment variable NEXT_PUBLIC_ANDREW_ID
-  if (q.includes("andrew id") || q.includes("andrewid")) {
-    return process.env.NEXT_PUBLIC_ANDREW_ID || "KhanAcademy";
+  // Handle queries asking for the largest of a list of numbers
+  if (
+    q.includes("largest") ||
+    q.includes("which of the following numbers is the largest") ||
+    q.includes("which of the following is the largest")
+  ) {
+    const nums = Array.from(q.matchAll(/\d+/g)).map((m) => parseInt(m[0], 10));
+    if (nums.length === 0) return "";
+    const max = nums.reduce((a, b) => (a > b ? a : b), nums[0]);
+    return String(max);
   }
 
   return "";
