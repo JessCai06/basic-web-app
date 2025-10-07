@@ -10,11 +10,11 @@ export default function QueryProcessor(query: string): string {
     );
   }
 
-  if (q.includes("name")) {
+  if (q.includes("What is your name?")) {
     return "jess06";
   }
 if (q.includes("what is your andrew id")) {
-  return "KhanAcademy";
+  return "jess06";
 }
 if (q.includes("andrew id")) {
   return "KhanAcademy";
